@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ソビエト タイマー</title>
+</head>
+
+<body>    
+    <input type="number" id="timeInput" min="1">
+    <button id="startButton">スタート</button>
+    <p id="timerDisplay"></p>
+    <audio id="alarmSound" src="https://upload.wikimedia.org/wikipedia/commons/d/db/Gimn_Sovetskogo_Soyuza_%281977_Vocal%29.oga"></audio>
+</body>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_the_Soviet_Union.svg');
+        /* 背景画像のパスを指定 */
+        background-size: cover;
+        /* 画像をコンテナ全体に拡大 */
+        background-position: center;
+        /* 画像を中央に配置 */
+        background-repeat: no-repeat;
+        /* 画像を繰り返さない */
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const timeInput = document.getElementById('timeInput');
+        const startButton = document.getElementById('startButton');
+        const timerDisplay = document.getElementById('timerDisplay');
+        const alarmSound = document.getElementById('alarmSound');
+
+        let timer;
+
+        startButton.addEventListener('click', () => {
+            let time = parseInt(timeInput.value, 10);
+            if (isNaN(time) || time <= 0) {
+                alert('有効な秒数を入力してください');
+                return;
+            }
+
+            timerDisplay.textContent = `残り時間: ${time}秒`;
+            clearInterval(timer);
+
+            timer = setInterval(() => {
+                if (time <= 0) {
+                    clearInterval(timer);
+                    alarmSound.play();
+                    timerDisplay.textContent = '時間が経ちました！';
+                } else {
+                    time--;
+                    timerDisplay.textContent = `残り時間: ${time}秒`;
+                }
+            }, 1000);
+        });
+    });
+</script>
+
+</html>
