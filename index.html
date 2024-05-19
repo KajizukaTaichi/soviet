@@ -57,7 +57,7 @@
         if (event.key === 'Enter') {
             let time = parseInt(timeInput.value, 10);
             if (isNaN(time) || time <= 0) {
-                alert('有効な秒数を入力してください');
+                timerDisplay.textContent = '有効な秒数を入力してください';
                 return;
             }
 
