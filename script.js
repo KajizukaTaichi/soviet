@@ -16,6 +16,7 @@ document.addEventListener('keydown', function (event) {
             return;
         }
 
+        timeInput.blur();
         timeInput.style.pointerEvents = 'none';
         timerDisplay.textContent = `Set time is ${time} second`;
         clearInterval(timer);
