@@ -16,6 +16,7 @@ document.addEventListener('keydown', function (event) {
             return;
         }
 
+        timeInput.style.pointerEvents = 'none';
         timerDisplay.textContent = `設定時間：${time}秒`;
         clearInterval(timer);
         
@@ -24,6 +25,7 @@ document.addEventListener('keydown', function (event) {
                 stopAlarm();
                 clearInterval(timer);
                 alarmSound.play();
+                timeInput.style.pointerEvents = 'auto';
                 timerDisplay.textContent = '時間が経ちました！';
             } else {
                 time--;
