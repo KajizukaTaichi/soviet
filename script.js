@@ -27,3 +27,8 @@ document.addEventListener('keydown', function (event) {
         }, 1000);
     }
 });
+
+timerDisplay.addEventListener("click", () => {
+    alarmSound.pause();
+    alarmSound.currentTime = 0;
+})
