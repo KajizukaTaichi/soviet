@@ -3,7 +3,7 @@ body {
     /* 背景画像のパスを指定 */
     background-size: cover;
     /* 画像をコンテナ全体に拡大 */
-    background-position: center;
+    background-position: left;
     /* 画像を中央に配置 */
     background-repeat: no-repeat;
     /* 画像を繰り返さない */
