@@ -12,7 +12,7 @@ document.addEventListener('keydown', function (event) {
             return;
         }
 
-        timerDisplay.textContent = `残り時間: ${time}秒`;
+        timerDisplay.textContent = `設定時間：${time}秒`;
         clearInterval(timer);
 
         timer = setInterval(() => {
@@ -22,7 +22,7 @@ document.addEventListener('keydown', function (event) {
                 timerDisplay.textContent = '時間が経ちました！';
             } else {
                 time--;
-                timerDisplay.textContent = `残り時間: ${time}秒`;
+                timeInput.value = time;
             }
         }, 1000);
     }
