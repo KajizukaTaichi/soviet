@@ -12,12 +12,12 @@ document.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         let time = parseInt(timeInput.value, 10);
         if (isNaN(time) || time <= 0) {
-            timerDisplay.textContent = '有効な秒数を入力してください';
+            timerDisplay.textContent = 'Please enter valid number';
             return;
         }
 
         timeInput.style.pointerEvents = 'none';
-        timerDisplay.textContent = `設定時間：${time}秒`;
+        timerDisplay.textContent = `Set time is ${time} second`;
         clearInterval(timer);
         
         timer = setInterval(() => {
@@ -26,7 +26,7 @@ document.addEventListener('keydown', function (event) {
                 clearInterval(timer);
                 alarmSound.play();
                 timeInput.style.pointerEvents = 'auto';
-                timerDisplay.textContent = '時間が経ちました！';
+                timerDisplay.textContent = 'It became the set time！';
             } else {
                 time--;
                 timeInput.value = time;
