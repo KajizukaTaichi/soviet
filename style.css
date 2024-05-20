@@ -1,0 +1,10 @@
+body {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_the_Soviet_Union.svg');
+    /* 背景画像のパスを指定 */
+    background-size: cover;
+    /* 画像をコンテナ全体に拡大 */
+    background-position: center;
+    /* 画像を中央に配置 */
+    background-repeat: no-repeat;
+    /* 画像を繰り返さない */
+}

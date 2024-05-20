@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ソビエト タイマー</title>
+
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
@@ -29,53 +31,9 @@
     </div>
 </body>
 
-<style>
-    body {
-        background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_the_Soviet_Union.svg');
-        /* 背景画像のパスを指定 */
-        background-size: cover;
-        /* 画像をコンテナ全体に拡大 */
-        background-position: center;
-        /* 画像を中央に配置 */
-        background-repeat: no-repeat;
-        /* 画像を繰り返さない */
-    }
-</style>
-
+<script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
-
-<script>
-    const timeInput = document.getElementById('timeInput');
-    const timerDisplay = document.getElementById('timerDisplay');
-    const alarmSound = document.getElementById('alarmSound');
-
-    let timer;
-
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            let time = parseInt(timeInput.value, 10);
-            if (isNaN(time) || time <= 0) {
-                timerDisplay.textContent = '有効な秒数を入力してください';
-                return;
-            }
-
-            timerDisplay.textContent = `残り時間: ${time}秒`;
-            clearInterval(timer);
-
-            timer = setInterval(() => {
-                if (time <= 0) {
-                    clearInterval(timer);
-                    alarmSound.play();
-                    timerDisplay.textContent = '時間が経ちました！';
-                } else {
-                    time--;
-                    timerDisplay.textContent = `残り時間: ${time}秒`;
-                }
-            }, 1000);
-        }
-    });
-</script>
 
 </html>
