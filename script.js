@@ -1,8 +1,12 @@
 const timeInput = document.getElementById('timeInput');
 const timerDisplay = document.getElementById('timerDisplay');
 const alarmSound = document.getElementById('alarmSound');
-
 let timer;
+
+function stopAlarm() {
+    alarmSound.pause();
+    alarmSound.currentTime = 0;
+}
 
 document.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
@@ -14,9 +18,10 @@ document.addEventListener('keydown', function (event) {
 
         timerDisplay.textContent = `設定時間：${time}秒`;
         clearInterval(timer);
-
+        
         timer = setInterval(() => {
             if (time <= 0) {
+                stopAlarm();
                 clearInterval(timer);
                 alarmSound.play();
                 timerDisplay.textContent = '時間が経ちました！';
@@ -28,7 +33,4 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-timerDisplay.addEventListener("click", () => {
-    alarmSound.pause();
-    alarmSound.currentTime = 0;
-})
+timerDisplay.addEventListener("click", stopAlarm)
