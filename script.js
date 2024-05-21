@@ -4,9 +4,11 @@ const alarmSound = document.getElementById('alarmSound');
 
 let timer;
 let isCountingDown = false;
+let isPlayingSound = false;
 
 function stopAlarm() {
     alarmSound.pause();
+    isPlayingSound = false;
     alarmSound.currentTime = 0;
 }
 
@@ -34,6 +36,7 @@ function startTimer() {
             stopAlarm();
             alarmSound.play();
             clearInterval(timer);
+            isPlayingSound = true;
             isCountingDown = false;
             timerDisplay.textContent = 'It became the set time！';
         } else {
@@ -58,7 +61,7 @@ document.addEventListener('keydown', function (event) {
 });
 
 timerDisplay.addEventListener("click", () => {
-    if (isCountingDown) {
+    if (isPlayingSound) {
         stopAlarm();
     } else {
         startTimer();
