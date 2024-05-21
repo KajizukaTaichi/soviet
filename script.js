@@ -3,6 +3,12 @@ const timerDisplay = document.getElementById('timerDisplay');
 const alarmSound = document.getElementById('alarmSound');
 
 let timer;
+
+let originalSound = alarmSound.src;
+let alternateSound = "https://upload.wikimedia.org/wikipedia/commons/9/9c/Gimn_Sovetskogo_Soyuza_(1944_Stalinist_lyrics).oga";
+let countType = 0;
+
+let isAlternateSound = false;
 let isCountingDown = false;
 let isPlayingSound = false;
 
@@ -57,6 +63,17 @@ document.addEventListener('keydown', function (event) {
         event.preventDefault();
         timeInput.focus();
         resetTimer();
+    } else if (event.ctrlKey && event.shiftKey) {
+        event.preventDefault();
+        countType++;
+
+        if (countType > 2) {
+            countType = 0;
+            if (confirm("Is it okay to change alarm sound?")) {
+                isAlternateSound = !isAlternateSound;
+                alarmSound.src = isAlternateSound ? alternateSound : originalSound;
+            }
+        }
     }
 });
 
