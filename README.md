@@ -1,5 +1,6 @@
 # Soviet Timer
 The simple timer that soviet-like design
+
 ![image](https://github.com/KajizukaTaichi/soviet-timer/assets/122075081/9d33a91b-b3be-46c9-af36-f886e325d214)
 
 
