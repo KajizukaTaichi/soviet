@@ -42,14 +42,31 @@ function startTimer() {
             stopAlarm();
             alarmSound.play();
             clearInterval(timer);
+            
             isPlayingSound = true;
             isCountingDown = false;
-            timerDisplay.textContent = 'It became the set time！';
+            
+            sendNotification("Set time has arrived!")
+            timerDisplay.textContent = 'Set time has arrived!';
         } else {
             time--;
             timeInput.value = time;
         }
     }, 1000);
+}
+
+function sendNotification(msg) {
+    if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+    } else if (Notification.permission === "granted") {
+        var notification = new Notification(msg);
+    } else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(function (permission) {
+            if (permission === "granted") {
+                var notification = new Notification(msg);
+            }
+        });
+    }
 }
 
 document.addEventListener('keydown', function (event) {
