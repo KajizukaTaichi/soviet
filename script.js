@@ -8,8 +8,14 @@ function stopAlarm() {
     alarmSound.currentTime = 0;
 }
 
+function resetTimer() {
+    clearInterval(timer);
+    timeInput.style.pointerEvents = 'auto';
+    timerDisplay.textContent = 'Timer stopped';
+}
+
 document.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
+    if (event.code === 'Enter') {
         let time = parseInt(timeInput.value, 10);
         if (isNaN(time) || time <= 0) {
             timerDisplay.textContent = 'Please enter valid number';
@@ -17,23 +23,28 @@ document.addEventListener('keydown', function (event) {
         }
 
         timeInput.blur();
-        timeInput.style.pointerEvents = 'none';
         timerDisplay.textContent = `Set time is ${time} second`;
         clearInterval(timer);
         
         timer = setInterval(() => {
             if (time <= 0) {
                 stopAlarm();
-                clearInterval(timer);
                 alarmSound.play();
-                timeInput.style.pointerEvents = 'auto';
+                clearInterval(timer);
                 timerDisplay.textContent = 'It became the set time！';
             } else {
                 time--;
                 timeInput.value = time;
             }
         }, 1000);
+    } else if (event.code === 'Space') {
+        event.preventDefault();
+        stopAlarm();
+    } else if (event.code === 'Escape') {
+        event.preventDefault();
+        resetTimer();
     }
 });
 
-timerDisplay.addEventListener("click", stopAlarm)
+timerDisplay.addEventListener("click", stopAlarm);
+timeInput.addEventListener("click", resetTimer);
