@@ -75,6 +75,9 @@ document.addEventListener('keydown', function (event) {
                 timerDisplay.textContent = 'Changed alarm sound';   
             }
         }
+    } else if (event.code === "Tab" && !isCountingDown) {
+        event.preventDefault();
+        timeInput.focus();
     }
 });
 
