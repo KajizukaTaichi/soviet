@@ -47,7 +47,7 @@ function startTimer() {
 }
 
 document.addEventListener('keydown', function (event) {
-    if (event.code === 'Enter') {
+    if (event.code === 'Enter' || event.key === 'Enter') {
         event.preventDefault();
         startTimer()
     } else if (event.code === 'Space') {
