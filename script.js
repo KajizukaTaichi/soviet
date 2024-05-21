@@ -63,7 +63,7 @@ document.addEventListener('keydown', function (event) {
 timerDisplay.addEventListener("click", () => {
     if (isPlayingSound) {
         stopAlarm();
-    } else {
+    } else if (!isCountingDown) {
         startTimer();
     }
 });
