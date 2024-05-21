@@ -17,43 +17,56 @@ function resetTimer() {
     timerDisplay.textContent = 'Timer stopped';
 }
 
+function startTimer() {
+    let time = parseInt(timeInput.value, 10);
+    if (isNaN(time) || time <= 0) {
+        timerDisplay.textContent = 'Please enter valid number';
+        return;
+    }
+
+    timeInput.blur();
+    timerDisplay.textContent = `Set time is ${time} second`;
+    isCountingDown = true;
+    clearInterval(timer);
+
+    timer = setInterval(() => {
+        if (time <= 0) {
+            stopAlarm();
+            alarmSound.play();
+            clearInterval(timer);
+            isCountingDown = false;
+            timerDisplay.textContent = 'It became the set time！';
+        } else {
+            time--;
+            timeInput.value = time;
+        }
+    }, 1000);
+}
+
 document.addEventListener('keydown', function (event) {
     if (event.code === 'Enter') {
-        let time = parseInt(timeInput.value, 10);
-        if (isNaN(time) || time <= 0) {
-            timerDisplay.textContent = 'Please enter valid number';
-            return;
-        }
-
-        timeInput.blur();
-        timerDisplay.textContent = `Set time is ${time} second`;
-        isCountingDown = true;
-        clearInterval(timer);
-        
-        timer = setInterval(() => {
-            if (time <= 0) {
-                stopAlarm();
-                alarmSound.play();
-                clearInterval(timer);
-                isCountingDown = false;
-                timerDisplay.textContent = 'It became the set time！';
-            } else {
-                time--;
-                timeInput.value = time;
-            }
-        }, 1000);
+        event.preventDefault();
+        startTimer()
     } else if (event.code === 'Space') {
         event.preventDefault();
         stopAlarm();
     } else if (event.code === 'Escape' && isCountingDown) {
         event.preventDefault();
+        timeInput.focus();
         resetTimer();
     }
 });
 
-timerDisplay.addEventListener("click", stopAlarm);
+timerDisplay.addEventListener("click", () => {
+    if (isCountingDown) {
+        stopAlarm();
+    } else {
+        startTimer();
+    }
+});
+
 timeInput.addEventListener("click", () => {
     if (isCountingDown) {
-        resetTimer()
+        resetTimer();
     }
 });
