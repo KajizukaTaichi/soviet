@@ -72,6 +72,7 @@ document.addEventListener('keydown', function (event) {
             if (confirm("Is it okay to change alarm sound?")) {
                 isAlternateSound = !isAlternateSound;
                 alarmSound.src = isAlternateSound ? alternateSound : originalSound;
+                timerDisplay.textContent = 'Changed alarm sound';   
             }
         }
     }
