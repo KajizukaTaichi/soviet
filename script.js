@@ -80,7 +80,7 @@ document.addEventListener('keydown', function (event) {
         event.preventDefault();
         timeInput.focus();
         resetTimer();
-    } else if (event.ctrlKey && event.shiftKey) {
+    } else if (event.ctrlKey && event.shiftKey && !isCountingDown) {
         event.preventDefault();
         countType++;
 
