@@ -92,10 +92,14 @@ document.addEventListener('keydown', function (event) {
     } else if (event.code === 'Space') {
         event.preventDefault();
         stopAlarm();
-    } else if (event.code === 'Escape' && isCountingDown) {
-        event.preventDefault();
-        timeInput.focus();
-        resetTimer();
+    } else if (event.code === 'Escape') {
+        if (isCountingDown) {
+            event.preventDefault();
+            timeInput.focus();
+            resetTimer();
+        } else {
+            timeInput.blur();
+        }
     } else if (event.ctrlKey && event.shiftKey && !isCountingDown) {
         countType++;
         event.preventDefault();
