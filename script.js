@@ -13,8 +13,6 @@ const soundList = [
 
 
 let countType = 0;
-
-let isAlternateSound = false;
 let isCountingDown = false;
 let isPlayingSound = false;
 
@@ -75,6 +73,24 @@ function sendNotification(msg) {
     }
 }
 
+function changeAlarmSound() {
+    countType++;
+
+    if (countType > 2) {
+        countType = 0;
+        if (confirm("Is it okay to change alarm sound?")) {
+            if (soundIndex < soundList.length - 1) {
+                soundIndex++;
+            } else {
+                soundIndex = 0;
+            }
+
+            alarmSound.src = soundList[soundIndex]
+            timerDisplay.textContent = 'Changed alarm sound';
+        }
+    }
+}
+
 document.addEventListener('keydown', function (event) {
     if (event.code === 'Enter' || event.key === 'Enter') {
         event.preventDefault();
@@ -88,21 +104,7 @@ document.addEventListener('keydown', function (event) {
         resetTimer();
     } else if (event.ctrlKey && event.shiftKey && !isCountingDown) {
         event.preventDefault();
-        countType++;
-
-        if (countType > 2) {
-            countType = 0;
-            if (confirm("Is it okay to change alarm sound?")) {
-                if (soundIndex < soundList.length - 1) {
-                    soundIndex++;
-                } else {
-                    soundIndex = 0;
-                }
-
-                alarmSound.src = soundList[soundIndex]
-                timerDisplay.textContent = 'Changed alarm sound';   
-            }
-        }
+        
     } else if (event.code === "Tab") {
         event.preventDefault();
         if  (!isCountingDown) {
