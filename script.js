@@ -73,21 +73,16 @@ function sendNotification(msg) {
     }
 }
 
-function changeAlarmSound() {
-    countType++;
-
-    if (countType > 2) {
-        countType = 0;
-        if (confirm("Is it okay to change alarm sound?")) {
-            if (soundIndex < soundList.length - 1) {
-                soundIndex++;
-            } else {
-                soundIndex = 0;
-            }
-
-            alarmSound.src = soundList[soundIndex]
-            timerDisplay.textContent = 'Changed alarm sound';
+function changeAlarmSound() {   
+    if (confirm("Is it okay to change alarm sound?")) {
+        if (soundIndex < soundList.length - 1) {
+            soundIndex++;
+        } else {
+            soundIndex = 0;
         }
+
+        alarmSound.src = soundList[soundIndex]
+        timerDisplay.textContent = 'Changed alarm sound';
     }
 }
 
@@ -103,8 +98,13 @@ document.addEventListener('keydown', function (event) {
         timeInput.focus();
         resetTimer();
     } else if (event.ctrlKey && event.shiftKey && !isCountingDown) {
+        countType++;
         event.preventDefault();
-        
+
+        if (countType > 2) {
+            countType = 0;
+            changeAlarmSound();
+        }
     } else if (event.code === "Tab") {
         event.preventDefault();
         if  (!isCountingDown) {
