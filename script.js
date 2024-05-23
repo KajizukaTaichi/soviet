@@ -25,7 +25,6 @@ function stopAlarm() {
 function resetTimer() {
     clearInterval(timer);
     isCountingDown = false;
-    timeInput.style.pointerEvents = 'auto';
     timerDisplay.textContent = 'Timer stopped';
 }
 
