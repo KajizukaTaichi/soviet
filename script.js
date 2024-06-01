@@ -8,7 +8,8 @@ let soundIndex = 0;
 const soundList = [
     alarmSound.src,
     "https://upload.wikimedia.org/wikipedia/commons/9/9c/Gimn_Sovetskogo_Soyuza_(1944_Stalinist_lyrics).oga",
-    "https://upload.wikimedia.org/wikipedia/commons/1/1c/Gimn_partii_bolshevikov_(Hymn_of_the_Bolshevik_Party).ogg"
+    "https://upload.wikimedia.org/wikipedia/commons/1/1c/Gimn_partii_bolshevikov_(Hymn_of_the_Bolshevik_Party).ogg",
+    "https://upload.wikimedia.org/wikipedia/commons/c/cb/Soviet_Anthem1955_vocals.ogg",
 ];
 
 
