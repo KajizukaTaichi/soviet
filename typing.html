@@ -1,0 +1,62 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+        <p id="text"></p>
+    </body>
+
+    <style>
+        body {
+            background-color: red;
+            color: yellow;
+        }
+
+        .select {
+            background-color: orange;
+        }
+    </style>
+
+    <script>
+        let text = `
+            Soyuz nerushimyy respublik svobodnykh
+            Splotila naveki Velikaya Rus'
+            Da zdravstvuyet sozdannyy voley narodov
+            Yedinyy, moguchiy Sovetskiy Soyuz!
+            Slav'sya, Otechestvo nashe svobodnoye,
+            Druzhby narodov nadozhnyy oplot!
+            Znamya sovetskoye, znamya narodnoye
+            Pust' ot pobedy k pobede vedot!
+        `;
+
+        document.getElementById("text").innerHTML = text;
+        text = document.getElementById("text").innerText;
+        let index = 0;
+
+        const audioElement = new Audio('https://upload.wikimedia.org/wikipedia/commons/9/9c/Gimn_Sovetskogo_Soyuza_(1944_Stalinist_lyrics).oga');
+        audioElement.loop = true;
+        audioElement.play();
+
+        document.addEventListener("keydown", function(event) {
+            event.preventDefault();
+            if (event.key.toLowerCase() === text[index].toLowerCase()) {
+                index++
+            } else {
+                audioElement.pause();
+                isPlaying = false;
+                setTimeout(() => {
+                    audioElement.play();
+                    isPlaying = true;
+                }, 400); 
+            }
+
+            let newText = "<span class='select'>" +  text.slice(0, index) + "</span>" + text.slice(index);
+            document.getElementById("text").innerHTML = newText;
+          
+            if (index === text.length) {
+                alert("クリア！");
+            }
+        });
+    </script>
+</html>
